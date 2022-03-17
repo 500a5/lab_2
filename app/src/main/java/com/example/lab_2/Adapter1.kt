@@ -14,17 +14,7 @@ class Adapter1(val list: Pair<MutableList<String>, MutableList<Int>>):
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title: TextView = itemView.findViewById(R.id.textView)
         val img: ImageView = itemView.findViewById(R.id.imageView)
-        /*val context=title.context
-        init {
 
-            itemView.setOnClickListener {
-                val intent = Intent(context,MainActivity2::class.java)
-                val courses = arrayOf(
-                    arrayOf("d","s"), arrayOf("s","s")               )
-                intent.putExtra("list", courses[1])
-                context.startActivity(intent)
-            }
-        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -35,9 +25,13 @@ class Adapter1(val list: Pair<MutableList<String>, MutableList<Int>>):
         val  holder =  MyViewHolder(itemView)
         itemView.setOnClickListener {
             val intent = Intent(context,MainActivity2::class.java)
-            val courses = arrayOf(
-                arrayOf("d","s"), arrayOf("s","s")               )
-            intent.putExtra("list", courses[holder.adapterPosition])
+            val fact: MutableList<MutableList<String>> = mutableListOf()
+                for (i in 0..20){
+                    fact.add(mutableListOf())
+                    for (j in 0..20)
+                        fact[i].add("факт нормер $j об аниеме $i")
+                }
+            intent.putExtra("pos", holder.adapterPosition)
             context.startActivity(intent)
         }
         return holder
